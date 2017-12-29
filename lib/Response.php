@@ -37,7 +37,7 @@ class Response
     public function __construct($statusCode = null, $body = null, $headers = null)
     {
         $this->statusCode = $statusCode;
-        $this->body = $body;
+        $this->body = json_decode($body);
         $this->headers = $headers;
     }
 
