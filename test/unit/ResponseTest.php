@@ -14,11 +14,11 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertAttributeEquals(null, 'body', $response);
         $this->assertAttributeEquals(null, 'headers', $response);
 
-        $response = new Response(200, 'test', ['Content-Encoding: gzip']);
+        $response = new Response(200, 'test', array('Content-Encoding: gzip'));
 
         $this->assertAttributeEquals(200, 'statusCode', $response);
         $this->assertAttributeEquals('test', 'body', $response);
-        $this->assertAttributeEquals(['Content-Encoding: gzip'], 'headers', $response);
+        $this->assertAttributeEquals(array('Content-Encoding: gzip'), 'headers', $response);
     }
 
     public function testStatusCode()
@@ -37,16 +37,16 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
     public function testHeaders()
     {
-        $response = new Response(null, null, ['Content-Type: text/html']);
+        $response = new Response(null, null, array('Content-Type: text/html'));
 
-        $this->assertEquals(['Content-Type: text/html'], $response->headers());
+        $this->assertEquals(array('Content-Type: text/html'), $response->headers());
     }
     
     public function testAssociativeHeaders()
     {
-        $response = new Response(null, null, ['Content-Type: text/html', 'HTTP/1.1 200 OK']);
+        $response = new Response(null, null, array('Content-Type: text/html', 'HTTP/1.1 200 OK'));
         
-        $this->assertEquals(['Content-Type' => 'text/html', 'Status' => 'HTTP/1.1 200 OK'], $response->headers(true));
+        $this->assertEquals(array('Content-Type' => 'text/html', 'Status' => 'HTTP/1.1 200 OK'), $response->headers(true));
     }
 
     /**
